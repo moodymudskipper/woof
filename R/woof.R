@@ -196,7 +196,6 @@ woof <- function(x) {
     `$` = function(x, i) {
       input <- substitute(x)
       i <- as.character(substitute(i)) # symbol to char ind
-      #browser()
       if (identical(input, quote(`*tmp*`))) return(.subset2(x, i))
       i_chr <- as.character(i)
       if (is.null(x[[i]])) eval(substitute(X[[i]] <<- recursor(), list(X = input)), ops)
@@ -205,7 +204,6 @@ woof <- function(x) {
     `$<-` = function(x, i, value) {
       input <- substitute(x)
       i <- as.character(substitute(i)) # symbol to char ind
-      #browser()
       x[[i]]
       x <- base::`[[<-`(x, i, value)
       x
@@ -218,7 +216,6 @@ woof <- function(x) {
 
   for (i in seq_along(indices_expr)) {
     eval(indices_expr[[i]], ops)
-    #eval(substitute(CALL$..compare <<- DESCR, list(CALL = indices_expr[[i]], DESCR = x[i])), ops)
     eval(substitute(CALL$..compare <<- structure(DESCR, class = "woof_compare"), list(CALL = indices_expr[[i]], DESCR = x[i])), ops)
   }
   old
