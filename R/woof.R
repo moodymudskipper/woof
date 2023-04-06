@@ -109,10 +109,16 @@ woof <- function(x) {
   lhs <- gsub("_class", "..class", lhs)
   lhs <- gsub("_inherit", "..inherit", lhs)
   lhs <- gsub("\\$\\.\\.\\.$", "$....", lhs)
-  indices_expr <- parse(text = sub("^`(.*?)`.*", "\\1", lhs))
 
-  old <- recursor()
+  indices_expr <- parse(text = sub("^`(.*?)`.*", "\\1", lhs))
+  expr <- indices_expr[[1]]
+  while (typeof(expr) != "symbol") {
+    expr <- expr[[2]]
+  }
+
+  var <- as.character(expr)
   new_woof_compare <- function() structure(list(), class = "woof_compare")
+  assign(var,  new_woof_compare(), environment())
 
   ops <- list(
     names = function(x) {
@@ -219,7 +225,8 @@ woof <- function(x) {
     eval(indices_expr[[i]], ops)
     eval(substitute(CALL$..compare <<- structure(DESCR, class = "woof_compare"), list(CALL = indices_expr[[i]], DESCR = x[i])), ops)
   }
-  old
+
+  get(var)
 }
 
 in_ci <- function () {
