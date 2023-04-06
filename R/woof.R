@@ -111,13 +111,13 @@ woof <- function(x) {
   lhs <- gsub("\\$\\.\\.\\.$", "$....", lhs)
   indices_expr <- parse(text = sub("^`(.*?)`.*", "\\1", lhs))
 
-  recursor <- function() structure(list(), class = "woof_compare")
   old <- recursor()
+  new_woof_compare <- function() structure(list(), class = "woof_compare")
 
   ops <- list(
     names = function(x) {
       input <- substitute(x)
-      if (is.null(x[["..names"]])) eval(substitute(X[["..names"]] <<- recursor(), list(X = input)), ops)
+      if (is.null(x[["..names"]])) eval(substitute(X[["..names"]] <<- new_woof_compare(), list(X = input)), ops)
       x[["..names"]]
     },
     `names<-` = function(x, value) {
@@ -127,7 +127,7 @@ woof <- function(x) {
     },
     environment = function(x) {
       input <- substitute(x)
-      if (is.null(x[["..env"]])) eval(substitute(X[["..env"]] <<- recursor(), list(X = input)), ops)
+      if (is.null(x[["..env"]])) eval(substitute(X[["..env"]] <<- new_woof_compare(), list(X = input)), ops)
       x[["..env"]]
     },
     `environment<-` = function(x, value) {
@@ -138,10 +138,10 @@ woof <- function(x) {
     attr = function(x, y) {
       input <- substitute(x)
       if (is.null(x[["..attr"]])) {
-        eval(substitute(X[["..attr"]] <<- recursor(), list(X = input)), ops)
+        eval(substitute(X[["..attr"]] <<- new_woof_compare(), list(X = input)), ops)
       }
       if (is.null(x[["..attr"]][[y]])) {
-        eval(substitute(X[["..attr"]][[y]] <<- recursor(), list(X = input)), ops)
+        eval(substitute(X[["..attr"]][[y]] <<- new_woof_compare(), list(X = input)), ops)
       }
       x[["..attr"]][[y]]
     },
@@ -152,7 +152,7 @@ woof <- function(x) {
     },
     class = function(x) {
       input <- substitute(x)
-      if (is.null(x[["..class"]])) eval(substitute(X[["..class"]] <<- recursor(), list(X = input)), ops)
+      if (is.null(x[["..class"]])) eval(substitute(X[["..class"]] <<- new_woof_compare(), list(X = input)), ops)
       x[["..class"]]
     },
     `class<-` = function(x, value) {
@@ -162,7 +162,7 @@ woof <- function(x) {
     },
     body = function(x) {
       input <- substitute(x)
-      if (is.null(x[["..body"]])) eval(substitute(X[["..body"]] <<- recursor(), list(X = input)), ops)
+      if (is.null(x[["..body"]])) eval(substitute(X[["..body"]] <<- new_woof_compare(), list(X = input)), ops)
       x[["..body"]]
     },
     `body<-` = function(x, value) {
@@ -172,7 +172,7 @@ woof <- function(x) {
     },
     formals = function(x) {
       input <- substitute(x)
-      if (is.null(x[["..formals"]])) eval(substitute(X[["..formals"]] <<- recursor(), list(X = input)), ops)
+      if (is.null(x[["..formals"]])) eval(substitute(X[["..formals"]] <<- new_woof_compare(), list(X = input)), ops)
       x[["..formals"]]
     },
     `formals<-` = function(x, value) {
@@ -184,7 +184,7 @@ woof <- function(x) {
       input <- substitute(x)
       i_chr <- as.character(i)
       if (identical(input, quote(`*tmp*`))) return(.subset2(x, i_chr))
-      if (is.null(x[[i_chr]])) eval(substitute(X[[i_chr]] <<- recursor(), list(X = input)), ops)
+      if (is.null(x[[i_chr]])) eval(substitute(X[[i_chr]] <<- new_woof_compare(), list(X = input)), ops)
       eval(substitute(.subset2(X, i_chr), list(X = input)), ops)
     },
     `[[<-` = function(x, i, value) {
@@ -199,7 +199,7 @@ woof <- function(x) {
       i <- as.character(substitute(i)) # symbol to char ind
       if (identical(input, quote(`*tmp*`))) return(.subset2(x, i))
       i_chr <- as.character(i)
-      if (is.null(x[[i]])) eval(substitute(X[[i]] <<- recursor(), list(X = input)), ops)
+      if (is.null(x[[i]])) eval(substitute(X[[i]] <<- new_woof_compare(), list(X = input)), ops)
       eval(substitute(.subset2(X, i), list(X = input)), ops)
     },
     `$<-` = function(x, i, value) {
