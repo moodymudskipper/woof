@@ -227,6 +227,10 @@ in_ci <- function () {
 
 #' @export
 print.woof_compare <- function(x, ...) {
-  cat(unlist(x), sep = "\n\n")
+  if (!length(x)) {
+    print(waldo::compare(NULL,NULL))
+  } else {
+    cat(unlist(x), sep = "\n\n")
+  }
   invisible(x)
 }
