@@ -108,6 +108,7 @@ woof <- function(x) {
   lhs <- sub("^`? *(.*?)(`| vs | +[|] +).*", "\\1", as.character(x))
   lhs <- gsub("_class", "..class", lhs)
   lhs <- gsub("_inherit", "..inherit", lhs)
+  lhs <- gsub("\\$\\.\\.\\.$", "$....", lhs)
   indices_expr <- parse(text = sub("^`(.*?)`.*", "\\1", lhs))
 
   recursor <- function() structure(list(), class = "woof_compare")
