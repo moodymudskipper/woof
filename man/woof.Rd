@@ -36,7 +36,7 @@ bar <- list(
   a = "B",
   list(c = list("D"), x = "E")
 )
-x <- waldo_compare(foo, bar)
+x <- waldo::compare(foo, bar)
 w <- woof(x)
 w$`2`
 }

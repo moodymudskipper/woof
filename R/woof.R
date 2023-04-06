@@ -28,7 +28,7 @@
 #'
 #' w$`1`$..attr
 #'
-#' dontrun{
+#' \dontrun{
 #' library(ggplot2)
 #' p1 <- ggplot(cars, aes(speed, dist)) + geom_point()
 #' p2 <- ggplot(cars, aes(speed, dist)) + geom_line()
@@ -96,7 +96,7 @@ woof_compare <- function(
 #'   a = "B",
 #'   list(c = list("D"), x = "E")
 #' )
-#' x <- waldo_compare(foo, bar)
+#' x <- waldo::compare(foo, bar)
 #' w <- woof(x)
 #' w$`2`
 woof <- function(x) {

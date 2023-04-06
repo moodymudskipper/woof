@@ -108,12 +108,13 @@ w$`2`
 
 w$`1`$..attr
 
-dontrun{
+\dontrun{
 library(ggplot2)
 p1 <- ggplot(cars, aes(speed, dist)) + geom_point()
 p2 <- ggplot(cars, aes(speed, dist)) + geom_line()
 w <- woof_compare(p1, p2)
-# the original input is huge, but we can navigate it easily with autocomplete
+
+# the original output is huge, but we can navigate it easily with autocomplete
 w$layers$`1`$geom_params
 }
 }
