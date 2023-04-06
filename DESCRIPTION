@@ -1,12 +1,11 @@
 Package: woof
-Title: What the Package Does (One Line, Title Case)
+Title: wadlo's companion package
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Antoine", "Fabri", , "antoine.fabri@gmail.com", role = c("aut", "cre"))
+Description: Convert the output 'waldo::compare()' into a structure object easy
+  to navigate and subset.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
