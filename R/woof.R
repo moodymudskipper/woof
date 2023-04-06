@@ -1,7 +1,7 @@
 
 #' Compare two objects
 #'
-#' A simple wrapper to use `woof()` around `waldo::compare()`
+#' A drop-in replacement for `waldo::compare()`, it prints just the same but can be subsetted.
 #'
 #' @inheritParams waldo::compare
 #'

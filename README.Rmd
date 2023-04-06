@@ -22,7 +22,7 @@ a nested list easier to explore and programatically work with. Any subset
 of the output prints like `waldo:compare()`'s output does. 
 
 * `woof::woof_compare()` is a drop-in replacement for `waldo::compare()`, it prints
-just the same but can be subetted.
+just the same but can be subsetted.
 
 ## Installation
 

@@ -85,7 +85,7 @@ components.}
 a "woof_compare" objects
 }
 \description{
-A simple wrapper to use \code{woof()} around \code{waldo::compare()}
+A drop-in replacement for \code{waldo::compare()}, it prints just the same but can be subsetted.
 }
 \examples{
 foo <- list(

@@ -10,7 +10,7 @@
   output prints like `waldo:compare()`’s output does.
 
 - `woof::woof_compare()` is a drop-in replacement for
-  `waldo::compare()`, it prints just the same but can be subetted.
+  `waldo::compare()`, it prints just the same but can be subsetted.
 
 ## Installation
 
